@@ -5,6 +5,10 @@ import { Title } from "../../components/Title/Title"
 import { useDateInfo } from "../../shared/hooks/useDateInfo";
 import { DatesProps } from "./index";
 import { atom, useAtomValue } from "jotai";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP)
 
 const numberAtom = atom(1);
 
