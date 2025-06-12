@@ -5,6 +5,10 @@ import { Title } from "../../components/Title/Title"
 import { useDateInfo } from "../../shared/hooks/useDateInfo";
 import { DatesProps } from "./index";
 import { atom, useAtomValue } from "jotai";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP)
 
 const numberAtom = atom(1);
 
@@ -16,9 +20,18 @@ export const Dates = ({ }: DatesProps) => {
 	return (
 		<div>
 			<Title name="Исторические даты" />
-			<CircleDate numAtom={numberAtom} startDate={dateInfo!.startDate} endDate={dateInfo!.endDate} />
-			<CircleButtons numAtom={numberAtom} />
-			<SliderInfo id={dateInfo!.id} arrayInfo={dateInfo!.infoDate} />
+			<CircleDate
+				numAtom={numberAtom}
+				startDate={dateInfo!.startDate}
+				endDate={dateInfo!.endDate}
+			/>
+			<CircleButtons
+				numAtom={numberAtom}
+			/>
+			<SliderInfo
+				id={dateInfo!.id}
+				arrayInfo={dateInfo!.infoDate}
+			/>
 		</div>
 	)
 }
