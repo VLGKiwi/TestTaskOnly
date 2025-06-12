@@ -20,9 +20,18 @@ export const Dates = ({ }: DatesProps) => {
 	return (
 		<div>
 			<Title name="Исторические даты" />
-			<CircleDate numAtom={numberAtom} startDate={dateInfo!.startDate} endDate={dateInfo!.endDate} />
-			<CircleButtons numAtom={numberAtom} />
-			<SliderInfo id={dateInfo!.id} arrayInfo={dateInfo!.infoDate} />
+			<CircleDate
+				numAtom={numberAtom}
+				startDate={dateInfo!.startDate}
+				endDate={dateInfo!.endDate}
+			/>
+			<CircleButtons
+				numAtom={numberAtom}
+			/>
+			<SliderInfo
+				id={dateInfo!.id}
+				arrayInfo={dateInfo!.infoDate}
+			/>
 		</div>
 	)
 }
