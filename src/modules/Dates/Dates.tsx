@@ -7,6 +7,7 @@ import { DatesProps } from "./index";
 import { atom, useAtomValue } from "jotai";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { NextButtons } from "../../components/NextButtons/NextButtons";
 
 gsap.registerPlugin(useGSAP)
 
@@ -26,6 +27,9 @@ export const Dates = ({ }: DatesProps) => {
 				endDate={dateInfo!.endDate}
 			/>
 			<CircleButtons
+				numAtom={numberAtom}
+			/>
+			<NextButtons
 				numAtom={numberAtom}
 			/>
 			<SliderInfo
