@@ -9,6 +9,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { NextButtons } from "../../components/NextButtons/NextButtons";
 
+import styles from './Dates.module.scss';
+
 gsap.registerPlugin(useGSAP)
 
 const numberAtom = atom(1);
@@ -19,7 +21,7 @@ export const Dates = ({ }: DatesProps) => {
 	const dateInfo = useDateInfo(number);
 
 	return (
-		<div>
+		<div className={styles.main}>
 			<Title name="Исторические даты" />
 			<CircleDate
 				numAtom={numberAtom}
