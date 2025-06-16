@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import styles from './CircleButtons.module.scss';
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CircleButtonsProps } from "./index";
 
 const BUTTON_COUNT = 6;
@@ -13,6 +13,8 @@ export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
   const [num, setNumber] = useAtom(numAtom);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInitialRender = useRef(true);
+  const [displayedName, setDisplayedName] = useState(NAME_BUTTONS[num - 1]);
+  const [isNameVisible, setIsNameVisible] = useState(false);
 
   useEffect(() => {
     const elements = containerRef.current?.querySelectorAll('button');
@@ -41,6 +43,12 @@ export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
         });
       }
     });
+
+    const timer = setTimeout(() => {
+      setIsNameVisible(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -53,8 +61,16 @@ export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
       elements?.forEach(element => {
         gsap.set(element, { rotation: -targetRotation });
       });
+
+      setDisplayedName(NAME_BUTTONS[num - 1]);
+
       isInitialRender.current = false;
-    } else {
+      return;
+    }
+
+    setIsNameVisible(false);
+
+    const rotationTimer = setTimeout(() => {
       gsap.to(containerRef.current, {
         rotation: targetRotation + "_short",
         duration: 0.8,
@@ -69,35 +85,44 @@ export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
           ease: "power2.inOut",
         });
       });
-    }
+
+      const nameUpdateTimer = setTimeout(() => {
+        setDisplayedName(NAME_BUTTONS[num - 1]);
+        setIsNameVisible(true);
+      }, 800);
+
+      return () => clearTimeout(nameUpdateTimer);
+    }, 300);
+
+    return () => clearTimeout(rotationTimer);
   }, [num]);
 
   const handleButtonClick = (clickedNum: number) => {
-
     if (clickedNum === num) return;
-
     setNumber(clickedNum);
   };
 
   return (
-    <div className={styles.container} ref={containerRef} id="circle">
-      {Array.from({ length: BUTTON_COUNT }, (_, i) => {
-        const buttonNum = i + 1;
-        const isActive = buttonNum === num;
-        const buttonClasses = `${styles.button} ${isActive ? styles.active : ''}`;
+    <div className={styles.wrapper}>
+      <div className={styles.container} ref={containerRef} id="circle">
+        {Array.from({ length: BUTTON_COUNT }, (_, i) => {
+          const buttonNum = i + 1;
+          const isActive = buttonNum === num;
+          const buttonClasses = `${styles.button} ${isActive ? styles.active : ''}`;
 
-        return (
-          <div>
+          return (
             <button onClick={() => handleButtonClick(buttonNum)} className={buttonClasses} key={i}>
               <span className={styles.buttonContent}>{buttonNum}</span>
             </button>
-            <p className={styles.buttonName}>{ NAME_BUTTONS[i] }</p>
-          </div>
-        );
-      })}
-      <svg className={styles.circle} width="530" height="530" viewBox="0 0 530 530" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle opacity="0.2" cx="265" cy="265" r="264.5" stroke="#42567A" />
-      </svg>
+          );
+        })}
+        <svg className={styles.circle} width="530" height="530" viewBox="0 0 530 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle opacity="0.2" cx="265" cy="265" r="264.5" stroke="#42567A" />
+        </svg>
+      </div>
+      <div className={`${styles.buttonName} ${!isNameVisible ? styles.hidden : ''}`}>
+        {displayedName}
+      </div>
     </div>
   );
 };

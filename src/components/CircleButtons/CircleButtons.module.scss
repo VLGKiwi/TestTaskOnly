@@ -1,12 +1,17 @@
 @import '../../shared/mixins/mixin.module.scss';
 
+.wrapper {
+	position: relative;
+	width: 530px;
+	height: 530px;
+	margin: 0 auto;
+}
+
 .container {
 	width: 530px;
 	height: 530px;
 
 	position: relative;
-
-	margin: 0 auto;
 
 	.button {
 		position: absolute;
@@ -22,7 +27,7 @@
 
 		background-color: #42567A;
 
-		overflow: hidden;
+		overflow: visible;
 
 		cursor: pointer;
 
@@ -58,10 +63,6 @@
 		}
 	}
 
-	.buttonName {
-		position: absolute;
-	}
-
 	.active {
 		width: 57px;
 		height: 57px;
@@ -84,5 +85,26 @@
 		height: 100%;
 		fill: none;
 		stroke: #42567A;
+	}
+}
+
+.buttonName {
+	@include sans-bold;
+	position: absolute;
+	top: 10px;
+	left: 440px;
+
+	font-size: 20px;
+	color: #42567A;
+	white-space: nowrap;
+
+	opacity: 1;
+	transition: opacity 0.3s ease-in-out;
+
+	pointer-events: none;
+	z-index: 20;
+
+	&.hidden {
+		opacity: 0;
 	}
 }
