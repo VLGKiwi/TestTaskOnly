@@ -1,15 +1,22 @@
+@import '../../shared/mixins/mixin.module.scss';
+
 .title {
 	display: flex;
 
-	justify-content: space-around;
+	width: 100%;
+	max-width: 975px;
+	margin: 0 auto;
+
+	justify-content: space-between;
 	align-items: center;
 
+	@include sans-bold;
 	font-size: 200px;
-	font-weight: 700;
 	line-height: 160px;
+	letter-spacing: -2%;
 
 	position: relative;
-	top: 320px;
+	top: 330px;
 
 	&__start {
 		color: #5D5FEF;

@@ -7,6 +7,7 @@ import { CircleButtonsProps } from "./index";
 const BUTTON_COUNT = 6;
 const ANGLE_STEP_DEG = 360 / BUTTON_COUNT;
 const ACTIVE_POSITION_DEG = -60;
+const NAME_BUTTONS = ['Первый', 'Второй', 'Третий', 'Четвертый', 'Пятый', 'Шестой'];
 
 export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
   const [num, setNumber] = useAtom(numAtom);
@@ -86,9 +87,12 @@ export const CircleButtons = ({ numAtom }: CircleButtonsProps) => {
         const buttonClasses = `${styles.button} ${isActive ? styles.active : ''}`;
 
         return (
-          <button onClick={() => handleButtonClick(buttonNum)} className={buttonClasses} key={i}>
-            <span className={styles.buttonContent}>{buttonNum}</span>
-          </button>
+          <div>
+            <button onClick={() => handleButtonClick(buttonNum)} className={buttonClasses} key={i}>
+              <span className={styles.buttonContent}>{buttonNum}</span>
+            </button>
+            <p className={styles.buttonName}>{ NAME_BUTTONS[i] }</p>
+          </div>
         );
       })}
       <svg className={styles.circle} width="530" height="530" viewBox="0 0 530 530" fill="none" xmlns="http://www.w3.org/2000/svg">
