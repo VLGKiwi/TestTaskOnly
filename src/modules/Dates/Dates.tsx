@@ -37,6 +37,7 @@ export const Dates = ({ }: DatesProps) => {
 			<SliderInfo
 				id={dateInfo!.id}
 				arrayInfo={dateInfo!.infoDate}
+				numAtom={numberAtom}
 			/>
 		</div>
 	)
