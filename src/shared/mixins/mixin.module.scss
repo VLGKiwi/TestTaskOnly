@@ -1,0 +1,14 @@
+@mixin sans-reg {
+	font-family: 'sans', sans-serif;
+	font-weight: 400;
+}
+
+@mixin sans-bold {
+	font-family: 'sans', sans-serif;
+	font-weight: 700;
+}
+
+@mixin bebas {
+	font-family: 'bebas', sans-serif;
+	font-weight: 400;
+}

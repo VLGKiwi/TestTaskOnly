@@ -1,0 +1,34 @@
+@import '../../shared/mixins/mixin.module.scss';
+
+.title {
+	@include sans-bold;
+	font-size: 56px;
+	line-height: 120%;
+
+	color: #42567A;
+
+	margin: 0;
+
+	position: absolute;
+	top: 170px;
+
+	max-width: 353px;
+
+	margin-left: 80px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&::before {
+		content: url("../../shared/assets/rgbLineText.svg");
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		position: relative;
+
+		left: -80px;
+	}
+}
