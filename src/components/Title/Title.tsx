@@ -8,3 +8,6 @@ export const Title = ({ name }: TitleProps) => {
         </h1>
     )
 }
+
+
+// Pt sans 700 400 Bebas Neue 400
