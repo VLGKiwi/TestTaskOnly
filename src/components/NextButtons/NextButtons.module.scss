@@ -1,3 +1,5 @@
+@import '../../shared/mixins/mixin.module.scss';
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -5,6 +7,22 @@
 
 	margin-left: 80px;
 
+	@include tablet {
+		margin-left: 30px;
+
+		position: relative;
+		bottom: -240px;
+
+		z-index: 100;
+	}
+
+	@include tablet-small {
+		margin-left: 20px;
+
+		bottom: -180px;
+
+		gap: 10px;
+	}
 
 	.date {
 		font-size: 14px;
@@ -20,6 +38,10 @@
 		display: flex;
 		gap: 20px;
 
+		@include tablet-small {
+			gap: 8px;
+		}
+
 		.button {
 			width: 50px;
 			height: 50px;
@@ -27,13 +49,18 @@
 			border: 1px solid #42567A80;
 
 			background: url('../../shared/assets/prevArrow.svg') no-repeat center center;
-			background-size: 10px;
+			background-size: 6px;
 
 			transition: all 0.3s ease;
 
+			@include tablet-small {
+				width: 25px;
+				height: 25px;
+			}
+
 			&:last-child {
 				background: url('../../shared/assets/nextArrow.svg') no-repeat center center;
-				background-size: 10px;
+				background-size: 6px;
 			}
 
 			&:hover {

@@ -1,19 +1,24 @@
 import { SliderInfoProps } from "./index";
 import styles from './SliderInfo.module.scss'
 
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import './styles.css'
 import 'swiper/scss'
 import 'swiper/scss/navigation'
+import 'swiper/scss/pagination'
+
 import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
+import { useResolution } from "../../shared/hooks/useResolution";
 
 export const SliderInfo = ({ id, arrayInfo, numAtom }: SliderInfoProps) => {
 	const [isFading, setIsFading] = useState(false);
 	const [displayedInfo, setDisplayedInfo] = useState(arrayInfo);
 	const currentNum = useAtomValue(numAtom);
+
+	const currentResolution = useResolution()
 
 	useEffect(() => {
 
@@ -31,12 +36,12 @@ export const SliderInfo = ({ id, arrayInfo, numAtom }: SliderInfoProps) => {
 
 	return (
 		<Swiper
-			modules={[Navigation, FreeMode]}
-			navigation
+			modules={[Navigation, FreeMode, Pagination]}
+			navigation={(currentResolution !== 'all' && currentResolution !== 'desktop') ? false : true}
 			freeMode={true}
-			// cssMode
-			spaceBetween={80}
-			slidesPerView={3.2}
+			spaceBetween={(currentResolution === 'all') ? 80 : 30 }
+			slidesPerView={(currentResolution === 'all') ? 3.2 : 1.8}
+			pagination={(currentResolution !== 'all' && currentResolution !== 'desktop') ? true : false}
 			key={id}
 			className={`${styles.container} ${isFading ? styles.fadeOut : ''}`}
 		>

@@ -20,6 +20,32 @@
 	align-items: center;
 	justify-content: center;
 
+	@include tablet {
+		position: relative;
+
+		margin-top: 30px;
+		margin-left: 30px;
+
+		top: 0;
+
+		font-size: 46px;
+	}
+
+	@include tablet-small {
+		font-size: 36px;
+
+		margin-top: 56px;
+		margin-left: 20px;
+
+		max-width: 230px;
+	}
+
+	@include mobile {
+		font-size: 20px;
+
+		max-width: 120px;
+	}
+
 	&::before {
 		content: url("../../shared/assets/rgbLineText.svg");
 
@@ -30,5 +56,9 @@
 		position: relative;
 
 		left: -80px;
+
+		@include tablet {
+			content: '';
+		}
 	}
 }

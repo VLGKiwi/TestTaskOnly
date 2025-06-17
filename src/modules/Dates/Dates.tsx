@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import { NextButtons } from "../../components/NextButtons/NextButtons";
 
 import styles from './Dates.module.scss';
+import { useResolution } from "../../shared/hooks/useResolution";
 
 gsap.registerPlugin(useGSAP)
 
@@ -20,6 +21,8 @@ export const Dates = ({ }: DatesProps) => {
 	const number = useAtomValue(numberAtom);
 	const dateInfo = useDateInfo(number);
 
+	const currentResolution = useResolution()
+
 	return (
 		<div className={styles.main}>
 			<Title name="Исторические даты" />
@@ -28,9 +31,13 @@ export const Dates = ({ }: DatesProps) => {
 				startDate={dateInfo!.startDate}
 				endDate={dateInfo!.endDate}
 			/>
-			<CircleButtons
-				numAtom={numberAtom}
-			/>
+			{
+				(currentResolution === 'all' || currentResolution === 'desktop') ?
+					<CircleButtons
+						numAtom={numberAtom}
+					/>
+					: null
+			}
 			<NextButtons
 				numAtom={numberAtom}
 			/>
