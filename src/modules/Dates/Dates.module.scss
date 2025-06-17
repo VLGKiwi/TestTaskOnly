@@ -1,3 +1,5 @@
+@import '../../shared/mixins/mixin.module.scss';
+
 .main {
 	max-width: 1440px;
 	margin: 0 auto;
@@ -6,4 +8,10 @@
 
 	background: url('../../shared/assets/backLines.svg') no-repeat center center;
 	background-size: 1440px;
+
+	@include tablet {
+		background: none;
+
+		position: relative;
+	}
 }

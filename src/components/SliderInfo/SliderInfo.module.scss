@@ -1,3 +1,5 @@
+@import '../../shared/mixins/mixin.module.scss';
+
 .container {
 	display: flex;
 	gap: 80px;
@@ -10,6 +12,38 @@
 
 	opacity: 1;
 	transition: opacity 0.3s ease-in-out;
+
+	@include desktop {
+		padding: 0 80px 0 40px !important;
+		gap: 40px;
+
+		max-width: 1000px;
+	}
+
+	@include tablet {
+		padding: 0 40px !important;
+
+		max-width: 688px;
+
+		position: relative;
+		top: -60px;
+
+		height: 230px !important;
+	}
+
+	@include tablet-small {
+		max-width: 385px;
+
+		top: -90px;
+
+		padding: 0 20px !important;
+
+		height: 200px !important;
+	}
+
+	@include mobile {
+		max-width: 280px;
+	}
 
 	&__content {
 		max-width: 1200px;
@@ -30,21 +64,43 @@
 		gap: 15px;
 		cursor: pointer;
 
+		@include tablet {
+			width: 350px;
+		}
+
+		@include tablet-small {
+			width: 200px;
+		}
+
+		@include mobile {
+			width: 160px;
+		}
+
 		.title {
+			@include bebas;
 			color: #3877EE;
 			font-size: 25px;
 			font-weight: 400;
 			line-height: 120%;
 			text-transform: uppercase;
 			pointer-events: none;
+
+			@include tablet-small {
+				font-size: 16px;
+			}
 		}
 
 		.description {
+			@include sans-reg;
 			color: #42567A;
 			font-size: 20px;
 			line-height: 150%;
 			font-weight: 400;
 			pointer-events: none;
+
+			@include tablet-small {
+				font-size: 14px;
+			}
 		}
 	}
 }
